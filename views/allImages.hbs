@@ -1,0 +1,12 @@
+<h1>This is the all images page</h1>
+
+
+{{#if data}}
+
+{{#each data}}
+
+<img src='/uploads/{{{filename}}}' alt="{{{filename}}}">
+
+{{/each}}
+
+{{/if}}
