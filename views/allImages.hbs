@@ -4,9 +4,19 @@
 {{#if data}}
 
 {{#each data}}
+  <button type="submit" data-toggle="modal" data-target="#myModal" filename="{{{filename}}}" path="{{{path}}}">Upload</button>
+  <img src='/uploads/{{{filename}}}' alt="{{{filename}}}" path="{{{path}}}">
+  {{!-- <img id="myModal" class="modal" class='modal-image' src='/uploads/{{{filename}}}'> --}}
 
-<img src='/uploads/{{{filename}}}' alt="{{{filename}}}">
 
+<div id="myModal" class="modal" filename="{{{filename}}}">
+    <div>
+      <div class="modal-body">
+        <p>Some text in the Modal Body</p>
+        <p>Some other text...</p>
+        <img class="modal-img" src='http://localhost:5000/uploads/fileUpload-1586970792740' alt="{{filename}}">
+      </div>
+    </div>
+  </div>
 {{/each}}
-
 {{/if}}
