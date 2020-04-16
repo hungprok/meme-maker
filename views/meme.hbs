@@ -1,0 +1,12 @@
+<h1>This is the all MEME page</h1>
+
+{{#if data}}
+
+{{#each data}}
+<div>
+<form action="/view" method="GET" body="{{{newfilename}}}" enctype="multipart/form-data">
+  <img src='/uploads/{{{newfilename}}}' alt="{{{newfilename}}}">
+</form>
+</div>
+{{/each}}
+{{/if}}

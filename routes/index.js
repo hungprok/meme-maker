@@ -1,14 +1,22 @@
 var express = require('express');
 var router = express.Router();
 const upload = require('../utils/upload');
-const { loadData, saveData } = require('../utils/data');
+const {loadData,saveData, loadMeme, saveMeme} = require('../utils/data');
 // const modal = require('modal');
-
+const jimp = require('jimp');
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var index = express();
+index.use(express.json());
+index.use(express.urlencoded({ extended: false }));
 
 onclick = function () {
   // modal.style.display = "block";
   console.log('Modal clicked')
 }
+
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -16,30 +24,62 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/upload', upload.single('fileUpload'), function (req, res, ) {
-  console.log(req.file)
 
   if (!req.file) {
-    res.render('allImages', { error: 'You need to choose a file to upload' })
+    res.render('index', { error: 'You need to choose a file to upload' });
+    return;
   }
+  console.log(req.file)
 
   const data = loadData()
   data.push(req.file)
   saveData(data)
 
-  res.render('allImages', { data, onclick })
+  res.render('allImages', { data })
 })
 
 router.get('/browse', upload.single('fileUpload'), function (req, res, ) {
+
   const data = loadData()
 
   res.render('allImages', { data })
 })
 
-router.post('/view', function (req, res, ) {
-  console.log(req)
-  if (req.body) {
-    onclick();
-  }
+router.get('/meme', function (req, res, ) {
+  const data = loadMeme();
+  console.log('this is from meme tab',data);
 
+  console.log(data);
+  res.render('meme', { data })
+})
+
+router.get('/view', async (req, res, ) => {
+  console.log(req)
+  console.log(req.query.imageInfo)
+
+  const filename = req.query.imageInfo;
+  onclick();
+  console.log(filename);
+  res.render('image', { filename })
+
+})
+
+router.post('/preview', urlencodedParser, async (req, res) => {
+  console.log(req.body)
+  console.log(req.body.top, req.body.bottom, req.body.imageInfo)
+  const filename = req.body.imageInfo;
+  const image = await jimp.read('public/uploads/' + filename);
+  const font = await jimp.loadFont(jimp.FONT_SANS_32_WHITE);
+  image.resize(jimp.AUTO, 300, jimp.RESIZE_BEZIER);
+  image.print(font, 0, 10, req.body.top);
+  image.print(font, 0, 250, req.body.bottom)
+  const newfilename = 'jimp-' + Date.now() +'-' + filename;
+  image.write('public/uploads/' + newfilename);
+
+  const data = loadMeme()
+  data.push({newfilename})
+  saveMeme(data)
+
+  res.render('preview', { newfilename })
 })
 module.exports = router;
