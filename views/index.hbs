@@ -1,10 +1,12 @@
-<h1>Welcome to<br>Hưng Nguyễn<br>Meme Maker Website</h1>
-<p>Choose a file to make your own meme</p>
-<form action="/upload" method="post" enctype="multipart/form-data" >
-  <input type="file" name="fileUpload" accept="image/png, image/jpg, image/jpeg"/>
-  <button type="submit">Upload</button>
-</form>
+<div class="container text-center pt-5">
+  <h1>Welcome to<br>Hưng Nguyễn Meme Maker Website</h1>
+  <p>Choose a file to make your own meme</p>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileUpload" accept="image/png, image/jpg, image/jpeg" />
+    <button type="submit">Upload</button>
+  </form>
 
-{{#if error}}
-<h1>{{error}}</h1>
-{{/if}}
+  {{#if error}}
+  <h1>{{error}}</h1>
+  {{/if}}
+</div>

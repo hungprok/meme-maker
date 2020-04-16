@@ -1,12 +1,16 @@
-<h1>This is the all MEME page</h1>
+<div class="d-flex mw-100 row justify-content-center">
 
-{{#if data}}
+  {{#if data}}
 
-{{#each data}}
-<div>
-<form action="/view" method="GET" body="{{{newfilename}}}" enctype="multipart/form-data">
-  <img src='/uploads/{{{newfilename}}}' alt="{{{newfilename}}}">
-</form>
+  {{#each data}}
+  <div>
+    <div class="col p-0">
+      <form action="/view" method="GET" body="{{{newfilename}}}" enctype="multipart/form-data">
+        <img style="border: 1.5px solid grey; margin-top: 10px; margin-left: 10px" src='/uploads/{{{newfilename}}}' alt="{{{newfilename}}}">
+      </form>
+    </div>
+  </div>
+
+  {{/each}}
+  {{/if}}
 </div>
-{{/each}}
-{{/if}}

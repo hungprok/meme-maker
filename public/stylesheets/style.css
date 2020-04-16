@@ -1,5 +1,5 @@
 body {
-    padding: 50px;
+    padding-top: 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -40,4 +40,12 @@ a {
 
 .modal-img {
     height: 500px;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1;
+    font-weight: bolder;
+    /* Firefox */
 }

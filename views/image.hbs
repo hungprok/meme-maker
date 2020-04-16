@@ -1,17 +1,19 @@
-<h1>This is the page for each image</h1>
+<div class="text-center">
 
+    {{#if filename}}
+    <form action="/preview" method="POST" enctype="application/x-www-form-urlencoded">
+        <div style="margin: 10px;"> <h3> Click on the text below to edit</h3></div>
+        <div>
+            <input
+                style="background-color: transparent; border: none; position: relative; top: 60px; font-size: 32px; color: white"
+                class="text-center" placeholder="TEXT ON TOP" type="text" name="top" required>
+        </div>
+        <img src='/uploads/{{{filename}}}' alt="{{filename}}">
+        <div><input style="background-color: transparent; border: none; position: relative; bottom: 60px; font-size: 32px; color: white"
+                class="text-center" placeholder="TEXT AT BOTTOM" type="text" name="bottom" required></div>
+        <button class="btn btn-primary" type="submit" value="{{filename}}" name="imageInfo">Submit</button>
 
+    </form>
+    {{/if}}
 
-
-{{#if filename}}
-<form action="/preview" method="POST" enctype="application/x-www-form-urlencoded" >
-<img src='/uploads/{{{filename}}}' alt="{{filename}}" >
-<input type="text" name="top" required>
-<input type="text" name="bottom" required>
-{{!-- <input type="submit" value="{{filename}}" name="imageInfo"> --}}
-
-<button type="submit" value="{{filename}}" name="imageInfo">hahahah</button>
-
-</form>
-{{/if}}
-
+</div>

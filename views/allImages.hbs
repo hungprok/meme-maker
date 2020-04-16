@@ -1,15 +1,20 @@
-<h1>This is the all images page</h1>
+<div class="d-flex mw-100 row justify-content-center">
 
 
-{{#if data}}
+  {{#if data}}
 
-{{#each data}}
-<div>
-<form action="/view" method="GET" body="{{{filename}}}" enctype="multipart/form-data">
-  <button type="submit" value="{{filename}}" name="imageInfo">choose this image</button>
-  <img src='/uploads/{{{filename}}}' alt="{{{filename}}}">
-</form>
+  {{#each data}}
+  <div>
+    <div class="col p-0 ">
+      <form action="/view" method="GET" body="{{{filename}}}" enctype="multipart/form-data">
+        <button type="submit" value="{{newname}}" name="imageInfo" style="border: 1.5px solid grey; margin-top: 10px; margin-left: 10px">
+          <img src='/uploads/{{{newname}}}' alt="{{{filename}}}">
+        </button>
+        
+      </form>
+    </div>
+  </div>
+  {{/each}}
+  {{/if}}
+
 </div>
-
-{{/each}}
-{{/if}}
