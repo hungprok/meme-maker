@@ -92,19 +92,19 @@ router.post('/preview', urlencodedParser, async (req, res) => {
   var textWidth = jimp.measureText(font, text);
   var textHeight = jimp.measureTextHeight(font, text);
   image.print(
-    font, w/2 - textWidth/2, 5 - textHeight/2,
+    font, w/2 - textWidth/2, 0 - textHeight/2,
         {   
         text: req.body.top,
         alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,                                      
-        }, textWidth, textHight
+        }, textWidth, textHeight
   );
 
   image.print(
-    font, w/2 - textWidth/2, h-75 - textHeight/2,
+    font, w/2 - textWidth/2, h - h/6 - textHeight/2,
         {   
         text: req.body.bottom,
         alignmentX: jimp.HORIZONTAL_ALIGN_CENTER,                                      
-        }, textWidth, textHight
+        }, textWidth, textHeight
   );
 
   const newfilename = 'jimp-' + Date.now() + '-' + filename;

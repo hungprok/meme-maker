@@ -1,9 +1,17 @@
-<h1>This is the PREVIEW PAGE</h1>
+<div class="text-center">
 
-{{#if newfilename}}
+  <h1 class="mt-5">Let preview your meme, sir!</h1>
+
+  {{#if newfilename}}
 
 
-  <img  src='/uploads/{{{newfilename}}}' alt="{{{newfilename}}}"">
+  <img class="mt-5" src='/uploads/{{{newfilename}}}' alt="{{{newfilename}}}">
+  <div class="mt-5"> <a href="/uploads/{{{newfilename}}}"> <button class="btn btn-primary" id="btn-download"
+        download="{{{newfilename}}}">Download</button></a></div>
 
 
-{{/if}}
+
+
+  {{/if}}
+
+</div>
